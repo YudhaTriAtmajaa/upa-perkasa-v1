@@ -1,0 +1,941 @@
+/* ============================================================
+   lowongan.css - UPA Perkasa (Publikasi > Lowongan Pekerjaan)
+   ============================================================ */
+
+/* Filter Bar */
+.upa-lowongan-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-lowongan-filter__search {
+  position: relative;
+  flex: 1 1 280px;
+}
+
+.upa-lowongan-filter__search i {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  color: var(--upa-text-muted);
+  transform: translateY(-50%);
+}
+
+.upa-lowongan-filter__search input {
+  width: 100%;
+  height: 44px;
+  padding: 0 1rem 0 2.6rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.92rem;
+  transition: var(--upa-transition);
+}
+
+.upa-lowongan-filter__search input:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--upa-green);
+  box-shadow: 0 0 0 3px var(--upa-green-soft);
+}
+
+.upa-lowongan-filter select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  min-width: 190px;
+  height: 44px;
+  padding: 0 2.4rem 0 1rem;
+  color: var(--upa-text);
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 14px 14px;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.9rem;
+  transition: var(--upa-transition);
+}
+
+.upa-lowongan-filter select:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: var(--upa-green);
+  box-shadow: 0 0 0 3px var(--upa-green-soft);
+}
+
+/* Status Segmented Tabs */
+.upa-lowongan-tabs {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 2px;
+  width: max-content;
+  padding: 4px;
+  background: var(--upa-bg-muted);
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+}
+
+.upa-lowongan-tabs__indicator {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 0;
+  height: calc(100% - 8px);
+  background: var(--upa-green);
+  border-radius: calc(var(--upa-radius-md) - 4px);
+  box-shadow: var(--upa-shadow-sm);
+  transform: translateX(0);
+  pointer-events: none;
+}
+
+.upa-lowongan-tabs--ready .upa-lowongan-tabs__indicator {
+  transition: transform 0.38s cubic-bezier(0.65, 0, 0.35, 1),
+              width 0.38s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.upa-lowongan-tabs__btn {
+  position: relative;
+  z-index: 1;
+  padding: 0.6rem 1.1rem;
+  color: var(--upa-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--upa-radius-md) - 4px);
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.upa-lowongan-tabs__btn:hover:not(.active) {
+  color: var(--upa-green);
+}
+
+.upa-lowongan-tabs__btn.active {
+  color: #fff;
+}
+
+.upa-lowongan-tabs__btn:focus-visible {
+  outline: 2px solid var(--upa-green);
+  outline-offset: 2px;
+}
+
+/* Offset scrollIntoView agar tidak tertutup navbar sticky */
+#lowongan-list {
+  scroll-margin-top: 100px;
+}
+
+/* Lowongan Tag */
+.upa-lowongan-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 14px;
+  color: var(--upa-text);
+  background: var(--upa-bg-muted);
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Listing Card */
+.upa-lowongan-card {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+  transition: var(--upa-transition);
+}
+
+.upa-lowongan-card:hover {
+  border-color: var(--upa-green);
+  box-shadow: var(--upa-shadow-md);
+  transform: translateY(-4px);
+}
+
+.upa-lowongan-card__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 120px;
+  width: 120px;
+  overflow: hidden;
+  background: var(--upa-bg-muted);
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+  color: var(--upa-text-muted);
+  font-size: 1.8rem;
+}
+
+.upa-lowongan-card__logo img {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  object-fit: contain;
+}
+
+.upa-lowongan-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.upa-lowongan-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+
+.upa-lowongan-card__head-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.upa-lowongan-card__title {
+  margin-bottom: 0.2rem;
+  color: var(--upa-green-heading);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.upa-lowongan-card:hover .upa-lowongan-card__title {
+  color: var(--upa-green);
+}
+
+.upa-lowongan-card__badge {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.upa-lowongan-card__meta-label {
+  margin-right: 0.35rem;
+  color: var(--upa-text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.upa-lowongan-card__tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+}
+
+.upa-lowongan-card__company {
+  margin-bottom: 0;
+  color: var(--upa-text);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.upa-lowongan-card__spacer {
+  flex: 1 1 auto;
+}
+
+.upa-lowongan-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  color: var(--upa-text-muted);
+  border-top: 1px solid var(--upa-border);
+  font-size: 0.85rem;
+}
+
+.upa-lowongan-card__posted {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--upa-text-muted);
+  font-size: 0.82rem;
+}
+
+.upa-lowongan-card__posted i {
+  font-size: 0.85rem;
+}
+
+.upa-lowongan-card__link {
+  flex-shrink: 0;
+  color: var(--upa-green);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.upa-lowongan-card:hover .upa-lowongan-card__link {
+  text-decoration: underline;
+}
+
+/* Company Sidebar */
+.upa-company-sidebar {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.75rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-company-sidebar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--upa-bg-muted);
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+}
+
+.upa-company-sidebar__logo img {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  object-fit: contain;
+}
+
+.upa-company-sidebar__logo i {
+  color: var(--upa-text-muted);
+  font-size: 2.2rem;
+}
+
+.upa-company-sidebar__name {
+  margin-bottom: 0.5rem;
+  color: var(--upa-green-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.upa-company-sidebar__website {
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--upa-yellow-dark);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.upa-company-sidebar__website:hover {
+  color: var(--upa-green);
+}
+
+.upa-company-sidebar__label {
+  margin-bottom: 0.5rem;
+  color: var(--upa-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.upa-company-sidebar__desc {
+  margin-bottom: 0.4rem;
+  color: var(--upa-text);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.upa-company-sidebar hr {
+  margin: 0.4rem 0;
+  border-top: 1px solid var(--upa-border);
+}
+
+.upa-company-sidebar__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.upa-company-sidebar__row i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  background: var(--upa-green-soft);
+  border-radius: var(--upa-radius-sm);
+  color: var(--upa-green);
+  font-size: 0.95rem;
+}
+
+.upa-company-sidebar__row-label {
+  margin-bottom: 0.1rem;
+  color: var(--upa-text-muted);
+  font-size: 0.78rem;
+}
+
+.upa-company-sidebar__row-value {
+  color: var(--upa-text);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* Vacancy List Heading */
+.upa-vacancy-list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.upa-vacancy-list-head__title {
+  margin: 0;
+  color: var(--upa-green-heading);
+  font-weight: 800;
+}
+
+.upa-vacancy-list-head__sort {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--upa-text-muted);
+  font-size: 0.9rem;
+}
+
+.upa-vacancy-list-head__sort select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0.45rem 2.2rem 0.45rem 0.9rem;
+  color: var(--upa-text);
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 13px 13px;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Vacancy Item */
+.upa-vacancy-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding: 1.75rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+  transition: var(--upa-transition);
+}
+
+.upa-vacancy-item:hover {
+  box-shadow: var(--upa-shadow-md);
+}
+
+.upa-vacancy-item__body {
+  padding-right: 210px;
+}
+
+.upa-vacancy-item__status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.upa-vacancy-item__posted {
+  color: var(--upa-text-muted);
+  font-size: 0.85rem;
+}
+
+.upa-vacancy-item__actions {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.upa-vacancy-item__actions .btn {
+  padding: 0.5rem 1.3rem;
+  font-size: 0.88rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.upa-vacancy-item__title {
+  margin-bottom: 0.85rem;
+  color: var(--upa-green-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.upa-vacancy-item__tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.upa-vacancy-item__divider {
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--upa-border);
+}
+
+.upa-vacancy-item__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+}
+
+.upa-vacancy-item__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: var(--upa-text-muted);
+}
+
+.upa-vacancy-item__deadline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.upa-vacancy-item__deadline i {
+  color: #c0392b;
+}
+
+.upa-vacancy-item__salary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--upa-text-muted);
+  font-weight: 600;
+}
+
+.upa-badge-danger {
+  color: #c0392b;
+  background: #fdeaea;
+}
+
+.upa-badge-warning {
+  color: #8a6d00;
+  background: #fff6e0;
+}
+
+/* CTA Banner Variant */
+.upa-cta-banner__btn.upa-cta-banner__btn--yellow {
+  display: inline-flex;
+  width: auto;
+  margin-bottom: 0;
+  padding: 0.85rem 1.75rem;
+  color: var(--upa-green-darker);
+  background: var(--upa-yellow);
+}
+
+.upa-cta-banner__btn.upa-cta-banner__btn--yellow:hover {
+  color: var(--upa-green-darker);
+  background: #fff;
+}
+
+/* Job Detail Modal */
+.upa-lowongan-modal .modal-content {
+  overflow: hidden;
+  border: none;
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-lg);
+}
+
+.upa-lowongan-modal .modal-header {
+  align-items: flex-start;
+  padding: 1.5rem 1.75rem 1.1rem;
+  border-bottom: 1px solid var(--upa-border);
+}
+
+.upa-lowongan-modal .modal-title {
+  margin-bottom: 0.6rem;
+  color: var(--upa-green-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.upa-lowongan-modal .modal-body {
+  padding: 1.5rem 1.75rem;
+}
+
+.upa-lowongan-modal .modal-footer {
+  padding: 1.1rem 1.75rem 1.5rem;
+  border-top: 1px solid var(--upa-border);
+}
+
+.upa-lowongan-modal .btn-close {
+  margin-top: 0.15rem;
+}
+
+.upa-lowongan-modal__company {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.upa-lowongan-modal__company-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  background: var(--upa-bg-muted);
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-sm);
+}
+
+.upa-lowongan-modal__company-logo img {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  object-fit: contain;
+}
+
+.upa-lowongan-modal__company-name {
+  margin-bottom: 0.1rem;
+  color: var(--upa-text);
+  font-weight: 700;
+}
+
+.upa-lowongan-modal__company-loc {
+  color: var(--upa-text-muted);
+  font-size: 0.88rem;
+}
+
+.upa-lowongan-modal__section-title {
+  margin-bottom: 0.6rem;
+  color: var(--upa-green-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.upa-lowongan-modal__desc {
+  margin-bottom: 1.5rem;
+  color: var(--upa-text);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.upa-lowongan-modal__list {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.upa-lowongan-modal__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+  color: var(--upa-text);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+.upa-lowongan-modal__list li:last-child {
+  margin-bottom: 0;
+}
+
+.upa-lowongan-modal__list--check i {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: #1c8a3c;
+  font-size: 1.05rem;
+}
+
+.upa-lowongan-modal__list--arrow i {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--upa-green);
+  font-size: 0.95rem;
+}
+
+.upa-lowongan-modal__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.1rem;
+  color: var(--upa-text-muted);
+  background: var(--upa-bg-muted);
+  border-left: 4px solid var(--upa-yellow-dark);
+  border-radius: 0 var(--upa-radius-sm) var(--upa-radius-sm) 0;
+  font-size: 0.88rem;
+}
+
+.upa-lowongan-modal__notice i {
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  color: var(--upa-yellow-dark);
+  font-size: 1.1rem;
+}
+
+.upa-lowongan-modal__facts {
+  border-top: 1px solid var(--upa-border);
+}
+
+.upa-lowongan-modal__fact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--upa-border);
+  font-size: 0.92rem;
+}
+
+.upa-lowongan-modal__fact-label {
+  color: var(--upa-text);
+  font-weight: 600;
+}
+
+.upa-lowongan-modal__fact-value {
+  color: var(--upa-text);
+}
+
+.upa-lowongan-modal__fact-value--danger {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.upa-lowongan-modal__share {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.upa-lowongan-modal__share span {
+  margin-right: 0.15rem;
+  color: var(--upa-text-muted);
+  font-size: 0.9rem;
+}
+
+.upa-lowongan-modal__share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--upa-green);
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: 50%;
+  transition: var(--upa-transition);
+}
+
+.upa-lowongan-modal__share-btn:hover {
+  color: #fff;
+  background: var(--upa-green);
+  border-color: var(--upa-green);
+}
+
+/* Poster Gallery & Lightbox */
+.upa-lowongan-modal__posters {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.upa-lowongan-modal__poster-thumb {
+  flex-shrink: 0;
+  width: 84px;
+  height: 84px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--upa-bg-muted);
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-sm);
+  cursor: zoom-in;
+  transition: var(--upa-transition);
+}
+
+.upa-lowongan-modal__poster-thumb:hover,
+.upa-lowongan-modal__poster-thumb:focus-visible {
+  border-color: var(--upa-green);
+  box-shadow: var(--upa-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.upa-lowongan-modal__poster-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upa-poster-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1085;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  background: rgba(2, 15, 5, 0.88);
+}
+
+.upa-poster-lightbox.is-open {
+  display: flex;
+}
+
+.upa-poster-lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--upa-radius-md);
+  box-shadow: var(--upa-shadow-lg);
+}
+
+.upa-poster-lightbox__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  transition: var(--upa-transition);
+}
+
+.upa-poster-lightbox__close:hover {
+  color: var(--upa-green-darker);
+  background: #fff;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .upa-company-sidebar {
+    position: static;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .upa-lowongan-filter__search {
+    flex: 1 1 100%;
+  }
+
+  .upa-lowongan-filter select {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #lowongan-list .upa-pagination-bar {
+    justify-content: center;
+  }
+
+  #lowongan-list .upa-pagination-bar__info {
+    width: 100%;
+    text-align: center;
+  }
+
+  #lowongan-list .upa-pagination {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .upa-vacancy-item__body {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0;
+  }
+
+  .upa-vacancy-item__status {
+    order: 1;
+  }
+
+  .upa-vacancy-item__title {
+    order: 2;
+  }
+
+  .upa-vacancy-item__tags {
+    order: 3;
+    margin-bottom: 1rem;
+  }
+
+  .upa-vacancy-item__actions {
+    position: static;
+    order: 4;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .upa-vacancy-item__actions .btn {
+    flex: 1;
+  }
+
+  .upa-lowongan-tabs {
+    width: 100%;
+  }
+
+  .upa-lowongan-tabs__btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .upa-lowongan-card {
+    flex-direction: column;
+  }
+
+  .upa-lowongan-card__logo {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 110px;
+  }
+}

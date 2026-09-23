@@ -1,0 +1,271 @@
+/* ============================================================
+      responsive.css - UPA Perkasa
+      Cross-page breakpoint overrides (loaded last in every page)
+      ============================================================ */
+
+   /* Tablet Landscape & Small Laptop (<= 991.98px) */
+   @media (max-width: 991.98px) {
+   .upa-navbar__brand img {
+      height: 44px;
+   }
+
+   .page-hero {
+      padding: 2.25rem 0 1.75rem;
+   }
+
+   .upa-hero-swiper {
+      height: calc(60vh + var(--upa-navbar-h));
+      min-height: calc(300px + var(--upa-navbar-h));
+   }
+
+   .upa-box {
+      padding: 2rem;
+   }
+
+   .upa-orgchart {
+      padding: 1.75rem;
+   }
+
+   .upa-ppid-latar {
+      padding: 1.75rem;
+   }
+   }
+
+   /* Tablet (<= 767.98px) */
+   @media (max-width: 767.98px) {
+   h1,
+   .h1 {
+      font-size: 2rem;
+   }
+
+   h2,
+   .h2 {
+      font-size: 1.6rem;
+   }
+
+   h3,
+   .h3 {
+      font-size: 1.3rem;
+   }
+
+   .upa-section {
+      padding: 3rem 0;
+   }
+
+   .upa-announce-section {
+      padding: 2.5rem 0 3rem;
+   }
+
+   .upa-hero-swiper {
+      height: calc(52vh + var(--upa-navbar-h));
+   }
+
+   .upa-leader-card--row {
+      flex-direction: column;
+   }
+
+   .upa-leader-card--row .upa-leader-card__media {
+      width: 100% !important;
+   }
+
+   .upa-orgchart__children {
+      gap: 0.5rem;
+   }
+
+   .upa-orgchart__child {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+   }
+
+   .upa-box {
+      padding: 1.75rem;
+   }
+
+   .upa-reason-card {
+      padding: 1.35rem;
+   }
+
+   .upa-orgchart {
+      padding: 1.5rem;
+   }
+
+   .upa-ppid-latar {
+      padding: 1.5rem 1.5rem;
+   }
+
+   .upa-announcement-card {
+      gap: 1rem;
+      padding: 1.25rem;
+   }
+
+   .upa-vacancy-card {
+      padding: 1.25rem;
+   }
+
+   .upa-pk-filterbar {
+      padding: 1rem;
+   }
+
+   .upa-section-header {
+      gap: 0.5rem;
+   }
+
+   .upa-report-preview__header {
+      padding: 1rem;
+   }
+
+   .upa-report-preview__header-title {
+      max-width: 50vw;
+   }
+
+   .upa-doc-viewer__controls {
+      flex-wrap: wrap;
+      row-gap: 0.5rem;
+   }
+   }
+
+   /* Mobile Phones (<= 575.98px) */
+   @media (max-width: 575.98px) {
+   .page-hero__title {
+      font-size: 1.55rem;
+   }
+
+   .page-hero {
+      padding: 2rem 0 1.75rem;
+   }
+
+   .heading-bubble {
+      -webkit-text-stroke: 1px var(--upa-green-darker);
+   }
+
+   .btn-upa-primary,
+   .btn-upa-outline,
+   .btn-upa-light {
+      padding: 0.55rem 1.15rem;
+      font-size: 0.9rem;
+   }
+
+   .upa-hero-swiper {
+      height: calc(46vh + var(--upa-navbar-h));
+      min-height: calc(240px + var(--upa-navbar-h));
+   }
+
+   .upa-section {
+      padding: 2.5rem 0;
+   }
+
+   .upa-agenda-item {
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1rem 1.1rem;
+   }
+
+   .upa-agenda-item__date {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+   }
+
+   .upa-agenda-item__meta {
+      flex-direction: column;
+      gap: 0.3rem;
+   }
+
+   .upa-announcement-card__icon {
+      width: 44px;
+      height: 44px;
+      font-size: 1.1rem;
+   }
+
+   .upa-vacancy-card__logo {
+      width: 46px;
+      height: 46px;
+   }
+
+   .upa-box {
+      padding: 1.5rem;
+   }
+
+   .upa-ppid-latar {
+      padding: 1.35rem;
+   }
+
+   .upa-orgchart {
+      padding: 1.25rem;
+   }
+
+   .upa-ppid-hero {
+      padding: 1.5rem 1.25rem;
+   }
+
+   .upa-report-doc {
+      padding: 1.1rem;
+   }
+
+   .upa-report-preview__header-title {
+      max-width: 100%;
+      white-space: normal;
+   }
+
+   .upa-report-preview__header {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+
+   .upa-mobile-nav__header {
+      padding: 1.1rem 1.25rem;
+   }
+
+   .upa-mobile-nav__body {
+      padding: 0.5rem 1.25rem 2rem;
+   }
+   }
+
+   /* Small Phones (<= 420px) */
+   @media (max-width: 420px) {
+   h1,
+   .h1 {
+      font-size: 1.7rem;
+   }
+
+   h2,
+   .h2 {
+      font-size: 1.4rem;
+   }
+
+   .page-hero__title {
+      font-size: 1.35rem;
+   }
+
+   .container,
+   .container-fluid {
+      padding-right: 1rem;
+      padding-left: 1rem;
+   }
+
+   .upa-hero-swiper {
+      height: calc(42vh + var(--upa-navbar-h));
+      min-height: calc(220px + var(--upa-navbar-h));
+   }
+
+   .upa-section {
+      padding: 2rem 0;
+   }
+
+   .upa-navbar__brand img {
+      height: 38px;
+   }
+   }
+
+   /* Global Mobile Safety Nets (<= 575.98px) */
+   @media (max-width: 575.98px) {
+   table:not(.table-responsive table) {
+      max-width: 100%;
+   }
+
+   .upa-mobile-link,
+   .upa-mobile-accordion__btn,
+   .upa-mobile-sublink {
+      min-height: 44px;
+   }
+   }

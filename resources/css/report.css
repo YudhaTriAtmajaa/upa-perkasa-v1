@@ -1,0 +1,610 @@
+/* ============================================================
+   report.css - UPA Perkasa (Report)
+   ============================================================ */
+
+/* Heading & Search Bar */
+.upa-report-heading {
+  margin-bottom: 1.5rem;
+}
+
+.upa-report-heading h1 {
+  margin-bottom: 0.5rem;
+  color: var(--upa-green-heading);
+  font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+  font-weight: 800;
+}
+
+.upa-report-heading p {
+  max-width: 900px;
+  margin-bottom: 0;
+  color: var(--upa-text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.upa-report-search {
+  position: relative;
+  margin-bottom: 1.75rem;
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-report-search i {
+  position: absolute;
+  top: 50%;
+  left: 1.5rem;
+  color: var(--upa-text-muted);
+  transform: translateY(-50%);
+}
+
+.upa-report-search input {
+  width: 100%;
+  padding: 0.7rem 0.5rem 0.7rem 2.3rem;
+  outline: none;
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+}
+
+/* Report Tabs Navigation */
+.upa-report-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.35rem;
+  overflow-x: auto;
+  background: var(--upa-bg-alt);
+  border-radius: var(--upa-radius-lg);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.upa-report-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.upa-report-tabs__item {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 0.55rem;
+  padding: 0.7rem 1.25rem;
+  color: var(--upa-text-muted);
+  border-radius: var(--upa-radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: var(--upa-transition);
+}
+
+.upa-report-tabs__item i {
+  font-size: 0.95rem;
+}
+
+.upa-report-tabs__item:hover {
+  color: var(--upa-green);
+  background: #fff;
+}
+
+.upa-report-tabs__item.active {
+  color: #fff;
+  background: var(--upa-green);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+@media (max-width: 575.98px) {
+  .upa-report-tabs {
+    margin-right: -0.25rem;
+    margin-left: -0.25rem;
+    padding: 0.35rem 0.25rem;
+  }
+
+  .upa-report-tabs__item {
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+.upa-report-list-label {
+  margin-bottom: 0.9rem;
+  color: var(--upa-text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Document Grid & Card */
+.upa-report-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.upa-report-doc {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.4rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+  text-align: left;
+  cursor: pointer;
+  transition: var(--upa-transition);
+}
+
+.upa-report-doc:hover {
+  box-shadow: var(--upa-shadow-md);
+  transform: translateY(-3px);
+}
+
+.upa-report-doc.active {
+  background: var(--upa-green-soft);
+  border-color: var(--upa-green);
+  box-shadow: 0 0 0 1px var(--upa-green) inset;
+}
+
+.upa-report-doc__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
+.upa-report-doc__year {
+  flex: 0 0 auto;
+  padding: 5px 12px;
+  color: var(--upa-text);
+  background: var(--upa-bg-alt);
+  border-radius: var(--upa-radius-sm);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.upa-report-doc__date {
+  color: var(--upa-text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.upa-report-doc__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.upa-report-doc__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  color: var(--upa-green);
+  background: var(--upa-green-soft);
+  border-radius: var(--upa-radius-sm);
+  font-size: 1.5rem;
+}
+
+.upa-report-doc.active .upa-report-doc__icon {
+  background: #fff;
+}
+
+.upa-report-doc__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.upa-report-doc__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+  color: var(--upa-green-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.upa-report-doc__meta {
+  display: block;
+  color: var(--upa-text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Preview Panel */
+.upa-report-preview {
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-report-preview__empty {
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+
+.upa-report-preview__empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 1.5rem;
+  color: var(--upa-text-muted);
+  background: var(--upa-bg-alt);
+  border-radius: 50%;
+  font-size: 2rem;
+}
+
+.upa-report-preview__empty-title {
+  margin-bottom: 0.5rem;
+  color: var(--upa-text);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.upa-report-preview__empty-sub {
+  max-width: 460px;
+  margin: 0 auto;
+  color: var(--upa-text-muted);
+  font-size: 0.92rem;
+}
+
+.upa-report-preview__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--upa-border);
+}
+
+.upa-report-preview__header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.upa-report-preview__header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  color: var(--upa-green);
+  background: var(--upa-green-soft);
+  border-radius: var(--upa-radius-sm);
+  font-size: 1.4rem;
+}
+
+.upa-report-preview__header-info {
+  min-width: 0;
+}
+
+.upa-report-preview__header-title {
+  max-width: 60vw;
+  overflow: hidden;
+  color: var(--upa-text);
+  font-size: 1rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upa-report-preview__header-meta {
+  color: var(--upa-text-muted);
+  font-size: 0.82rem;
+}
+
+.upa-report-preview__viewport {
+  --upa-drive-bar: 0px;
+
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  background: var(--upa-bg-muted);
+}
+
+.upa-report-preview__frame {
+  display: block;
+  width: 100%;
+  height: calc(100% + var(--upa-drive-bar));
+  margin-top: calc(-1 * var(--upa-drive-bar));
+  border: none;
+  touch-action: pinch-zoom;
+}
+
+/* Capaian IKU1 - Stat Cards */
+.upa-iku1-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.upa-iku1-stat {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 1.5rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-iku1-stat__label {
+  margin-bottom: 0.5rem;
+  color: var(--upa-text-muted);
+  font-size: 0.9rem;
+}
+
+.upa-iku1-stat__value {
+  margin-bottom: 0.4rem;
+  color: var(--upa-green-heading);
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.upa-iku1-stat__value--up {
+  color: #1c8a3c;
+}
+
+.upa-iku1-stat__delta {
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.upa-iku1-stat__delta--up {
+  color: #1c8a3c;
+}
+
+.upa-iku1-stat__foot {
+  color: var(--upa-text-muted);
+  font-size: 0.82rem;
+}
+
+.upa-iku1-stat__foot-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.upa-iku1-stat__ring {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  transform: rotate(-90deg);
+}
+
+.upa-iku1-stat__ring-track {
+  fill: none;
+  stroke: var(--upa-border);
+  stroke-width: 6;
+}
+
+.upa-iku1-stat__ring-fill {
+  fill: none;
+  stroke: var(--upa-green);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.upa-iku1-stat__bar {
+  width: 100%;
+  height: 8px;
+  margin-bottom: 0.4rem;
+  overflow: hidden;
+  background: var(--upa-bg-alt);
+  border-radius: var(--upa-radius-pill);
+}
+
+.upa-iku1-stat__bar-fill {
+  height: 100%;
+  background: var(--upa-yellow);
+  border-radius: var(--upa-radius-pill);
+}
+
+.upa-iku1-sparkline {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 30px;
+}
+
+.upa-iku1-sparkline span {
+  width: 6px;
+  background: var(--upa-green);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.85;
+}
+
+.upa-iku1-sparkline span:last-child {
+  opacity: 1;
+}
+
+.upa-iku1-avatars {
+  display: flex;
+}
+
+.upa-iku1-avatars__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-left: -8px;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.upa-iku1-avatars__dot:first-child {
+  margin-left: 0;
+}
+
+.upa-iku1-avatars__dot--more {
+  color: var(--upa-text-muted);
+  background: var(--upa-bg-alt);
+}
+
+/* Capaian IKU1 - Filters */
+.upa-iku1-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-iku1-filters__item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--upa-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.upa-iku1-filters__item select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 44px;
+  padding: 0 2.4rem 0 1rem;
+  color: var(--upa-text);
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 14px 14px;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.88rem;
+  transition: var(--upa-transition);
+}
+
+.upa-iku1-filters__item select:focus {
+  outline: none;
+  border-color: var(--upa-green);
+  box-shadow: 0 0 0 3px var(--upa-green-soft);
+}
+
+/* Capaian IKU1 - Visualisasi Performa Panel */
+.upa-iku1-panel {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-iku1-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.upa-iku1-panel__head h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--upa-green-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.upa-iku1-embed {
+  width: 100%;
+  overflow: hidden;
+  background: var(--upa-bg-muted);
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+}
+
+.upa-iku1-embed__frame {
+  display: block;
+  width: 100%;
+  height: 900px;
+  border: 0;
+}
+
+@media (max-width: 575.98px) {
+  .upa-iku1-embed__frame {
+    height: 620px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1199.98px) {
+  .upa-report-doc-grid {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .upa-report-doc-grid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+
+  .upa-iku1-panel__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .upa-report-doc-grid {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+
+  .upa-report-preview__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .upa-report-preview__viewport {
+    height: 65vh;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .upa-report-doc-grid {
+    grid-template-columns: 1fr;
+  }
+}

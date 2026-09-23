@@ -1,0 +1,541 @@
+/* ============================================================
+   home.css - UPA Perkasa (Beranda / Homepage)
+   ============================================================ */
+
+/* Hero Swiper Banner */
+.upa-hero {
+  position: relative;
+  margin-top: calc(-1 * var(--upa-navbar-h));
+}
+
+.upa-hero-swiper {
+  height: calc(78vh + var(--upa-navbar-h));
+  max-height: calc(640px + var(--upa-navbar-h));
+  min-height: calc(380px + var(--upa-navbar-h));
+  overflow: hidden;
+}
+
+.upa-hero-swiper .swiper-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.upa-hero__img-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.upa-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform-origin: center;
+}
+
+/* Ken Burns efekt zoom slide aktif */
+.upa-hero-swiper .swiper-slide-active .upa-hero__img {
+  animation: kenBurns 7s ease-out forwards;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.09);
+  }
+}
+
+.upa-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 20, 0, 0.04) 0%,
+    rgba(0, 20, 0, 0.12) 55%,
+    rgba(0, 20, 0, 0.72) 100%
+  );
+  pointer-events: none;
+}
+
+.upa-hero-swiper__pagination {
+  bottom: 1.5rem !important;
+  z-index: 2;
+}
+
+.upa-hero-swiper__pagination .swiper-pagination-bullet {
+  width: 34px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  opacity: 1;
+  transition: background 0.3s;
+}
+
+.upa-hero-swiper__pagination .swiper-pagination-bullet-active {
+  background: var(--upa-yellow);
+}
+
+/* Pengumuman Section */
+.upa-announce-section {
+  position: relative;
+  margin-top: -4px;
+  padding-top: 2.5rem;
+  padding-bottom: 4.5rem;
+  background: linear-gradient(360deg, var(--upa-green-light) 0%, var(--upa-green-dark) 100%);
+  box-shadow: 0 20px 40px -12px rgba(0, 20, 0, 0.35);
+  overflow-x: hidden;
+}
+
+.upa-announce-section__title {
+  font-size: clamp(1.75rem, 3.5vw, 3.25rem);
+}
+
+.upa-announce-section__subtitle {
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+}
+
+.upa-announce-swiper {
+  padding-bottom: 2.5rem;
+}
+
+@media (max-width: 991.98px) {
+  .upa-announce-swiper {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    overflow: visible;
+  }
+}
+
+.upa-announce-swiper .swiper-slide {
+  height: auto;
+}
+
+.upa-announce-swiper .swiper-slide > * {
+  height: 100%;
+}
+
+.upa-announce-swiper__pagination .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.upa-announce-swiper__pagination .swiper-pagination-bullet-active {
+  background: var(--upa-yellow);
+}
+
+.upa-announcement-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 100%;
+  padding: 1.75rem;
+  background: #fff;
+  border-radius: var(--upa-radius-md);
+  box-shadow: 0 14px 28px rgba(0, 10, 0, 0.22);
+  text-decoration: none;
+  transition: var(--upa-transition);
+}
+
+.upa-announcement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 36px rgba(0, 10, 0, 0.28);
+}
+
+.upa-announcement-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  background: var(--upa-green-soft);
+  border-radius: 50%;
+  color: var(--upa-green);
+  font-size: 1.3rem;
+}
+
+.upa-announcement-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.upa-announcement-card__date {
+  color: var(--upa-text-muted);
+  font-size: 0.82rem;
+} 
+
+.upa-announcement-card__title {
+  color: var(--upa-text);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* Grid Pengumuman Beranda */
+.upa-pengumuman-grid {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .upa-pengumuman-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 2rem;
+    align-items: stretch;
+  }
+}
+
+.upa-pengumuman-grid .upa-announcement-card {
+  height: 100%;
+  min-height: 110px;
+  padding: 1.25rem 1.5rem;
+  align-items: center;
+}
+
+.upa-pengumuman-grid .upa-announcement-card__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.4;
+  min-height: 2.8em;
+}
+
+.upa-pengumuman-grid .upa-announcement-card {
+  height: 116px;
+  align-items: center;
+}
+
+/* Generic Section Spacing */
+.upa-section {
+  padding: 4.5rem 0;
+}
+
+.upa-section--alt {
+  background-color: var(--upa-bg-alt);
+}
+
+.upa-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.upa-section-header__title {
+  margin-bottom: 0.35rem;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.upa-section-header__subtitle {
+  margin-bottom: 0;
+  color: var(--upa-text-muted);
+}
+
+.upa-section-header__link {
+  color: var(--upa-green);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.upa-section-header__link:hover {
+  color: var(--upa-green-dark);
+  text-decoration: underline;
+}
+
+/* Vacancy Card */
+.upa-vacancy-card {
+  padding: 1.5rem;
+}
+
+.upa-lowongan-swiper {
+  padding-bottom: 2.5rem;
+}
+
+.upa-lowongan-swiper .swiper-slide {
+  height: auto;
+}
+
+.upa-lowongan-swiper .swiper-slide > * {
+  height: 100%;
+}
+
+.upa-lowongan-swiper__pagination .swiper-pagination-bullet {
+  background: var(--upa-text-muted);
+}
+
+.upa-lowongan-swiper__pagination .swiper-pagination-bullet-active {
+  background: var(--upa-green);
+}
+
+.upa-vacancy-card__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  background: var(--upa-bg-muted);
+  border: 1px dashed var(--upa-border);
+  border-radius: var(--upa-radius-sm);
+  color: var(--upa-text-muted);
+  font-size: 1.35rem;
+}
+
+.upa-vacancy-card__logo img {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  object-fit: contain;
+}
+
+.upa-vacancy-card__title {
+  margin-bottom: 0.15rem;
+  font-weight: 700;
+}
+
+.upa-vacancy-card__company {
+  margin-bottom: 0.75rem;
+  color: var(--upa-text-muted);
+  font-size: 0.9rem;
+}
+
+.upa-vacancy-card__tag {
+  padding: 3px 10px;
+  background: var(--upa-green-soft);
+  border-radius: 999px;
+  color: var(--upa-green);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.upa-vacancy-card__divider {
+  margin: 0.5rem 0 1rem;
+  border-top: 1px dashed var(--upa-border);
+  opacity: 1;
+}
+
+.upa-vacancy-card__deadline {
+  color: var(--upa-text-muted);
+}
+
+.upa-vacancy-card__link {
+  color: var(--upa-green);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.upa-vacancy-card__link:hover {
+  color: var(--upa-green-dark);
+}
+
+/* News Card & Swiper Berita */
+.upa-berita-swiper {
+  padding-bottom: 2.5rem;
+}
+
+.upa-news-card {
+  overflow: hidden;
+}
+
+.upa-news-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.upa-news-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.upa-news-card:hover .upa-news-card__media img {
+  transform: scale(1.07);
+}
+
+.upa-news-card__date {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 4px 12px;
+  background: var(--upa-green);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.upa-news-card__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.upa-news-card__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  color: var(--upa-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.upa-news-card__link {
+  color: var(--upa-green);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.upa-news-card__link:hover {
+  color: var(--upa-green-dark);
+}
+
+.upa-berita-swiper__pagination .swiper-pagination-bullet {
+  background: var(--upa-text-muted);
+}
+
+.upa-berita-swiper__pagination .swiper-pagination-bullet-active {
+  background: var(--upa-green);
+}
+
+/* Agenda Item */
+.upa-agenda-item {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+  box-shadow: var(--upa-shadow-sm);
+  transition: var(--upa-transition);
+}
+
+.upa-agenda-item:hover {
+  border-color: var(--upa-green);
+  box-shadow: var(--upa-shadow-md);
+}
+
+.upa-announce-section .upa-agenda-item {
+  border-color: transparent;
+  box-shadow: 0 14px 28px rgba(0, 10, 0, 0.22);
+}
+
+.upa-announce-section .upa-agenda-item:hover {
+  box-shadow: 0 20px 36px rgba(0, 10, 0, 0.28);
+}
+
+.upa-agenda-item__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  gap: 0.1rem;
+  background: var(--upa-green);
+  border-radius: var(--upa-radius-sm);
+  color: #fff;
+  line-height: 1.2;
+}
+
+.upa-agenda-item__month {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.upa-agenda-item__day {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.upa-agenda-item__title {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.upa-agenda-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  color: var(--upa-text-muted);
+  font-size: 0.82rem;
+}
+
+.upa-agenda-item__meta i {
+  margin-right: 0.4rem !important;
+}
+
+.upa-agenda-swiper {
+  padding: 32px 40px 3.5rem;
+}
+
+@media (max-width: 767.98px) {
+  .upa-agenda-swiper {
+    padding: 16px 1rem 3.5rem;
+  }
+}
+
+.upa-agenda-swiper .swiper-slide {
+  height: auto;
+  overflow: visible;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+.upa-agenda-swiper .swiper-slide > * {
+  height: 100%;
+}
+
+.upa-agenda-swiper__pagination .swiper-pagination-bullet {
+  background: var(--upa-text-muted);
+}
+
+.upa-agenda-swiper__pagination .swiper-pagination-bullet-active {
+  background: var(--upa-green);
+}
+
+@media (max-width: 991.98px) {
+  .upa-announce-section,
+  .upa-section {
+    overflow-x: hidden;
+  }
+
+.upa-announce-swiper,
+.upa-lowongan-swiper,
+.upa-berita-swiper,
+.upa-agenda-swiper {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  overflow: visible;
+  }
+}

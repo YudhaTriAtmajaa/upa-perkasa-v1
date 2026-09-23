@@ -1,0 +1,408 @@
+/* ============================================================
+   navbar.css - UPA Perkasa
+   ============================================================ */
+
+:root {
+  --upa-navbar-h: 80px;
+}
+
+/* Navbar Container */
+.upa-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition: top 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.upa-navbar .navbar {
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-radius: 0;
+  box-shadow: 0 1px 0 var(--upa-border);
+  transition:
+    background-color 0.4s ease,
+    backdrop-filter 0.4s ease,
+    max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+.upa-navbar .navbar-collapse {
+  column-gap: 1.75rem;
+}
+
+/* Sticky & Floating Pill Effect */
+.upa-navbar--scrolled {
+  top: 0.6rem;
+}
+
+@media (min-width: 992px) {
+  .upa-navbar--scrolled {
+    top: 0.85rem;
+  }
+}
+
+.upa-navbar--scrolled .navbar.bg-white {
+  max-width: calc(100% - 1.25rem);
+  background-color: rgba(255, 255, 255, 0.72) !important;
+  border-radius: var(--upa-radius-pill);
+  box-shadow: var(--upa-shadow-lg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+@media (min-width: 576px) {
+  .upa-navbar--scrolled .navbar.bg-white {
+    max-width: calc(100% - 2rem);
+  }
+}
+
+@media (min-width: 992px) {
+  .upa-navbar--scrolled .navbar.bg-white {
+    max-width: min(1240px, calc(100% - 3rem));
+  }
+}
+
+/* Brand Logo */
+.upa-navbar__brand img {
+  width: auto;
+  height: 52px;
+  transition: var(--upa-transition);
+}
+
+.upa-navbar__brand:hover img {
+  transform: scale(1.04);
+}
+
+/* Navigation Links */
+.upa-navbar__nav {
+  gap: 0.15rem;
+}
+
+.upa-navbar__nav .nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.6rem 1.15rem;
+  color: #26292c;
+  font-family: var(--upa-font-body);
+  font-size: 0.98rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.upa-navlink__label {
+  position: relative;
+  display: inline-block;
+  line-height: 1.3;
+}
+
+.upa-navlink__label::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 2px;
+  background: var(--upa-green);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.upa-navbar__nav .nav-link:hover,
+.upa-navbar__nav .nav-link.active {
+  color: var(--upa-green);
+  font-weight: 600;
+}
+
+.upa-navbar__nav .nav-link:hover .upa-navlink__label::after,
+.upa-navbar__nav .nav-link.active .upa-navlink__label::after {
+  transform: scaleX(1);
+}
+
+.upa-navbar__nav .nav-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.upa-navbar__nav .nav-link:focus-visible {
+  outline: none;
+  color: var(--upa-green);
+  box-shadow: none;
+}
+
+.upa-navbar__nav .nav-link:focus-visible .upa-navlink__label::after {
+  transform: scaleX(1);
+}
+
+/* Dropdown */
+.upa-dropdown__toggle::after {
+  content: none;
+}
+
+.upa-dropdown__caret {
+  margin-left: 2px;
+  font-size: 0.72rem;
+  transition: transform 0.2s ease;
+}
+
+.upa-dropdown.show .upa-dropdown__caret,
+.upa-dropdown__toggle[aria-expanded="true"] .upa-dropdown__caret {
+  transform: rotate(-180deg);
+}
+
+.upa-dropdown__menu {
+  min-width: 240px;
+  margin-top: 0.6rem;
+  padding: 0.6rem;
+  border: none;
+  border-radius: var(--upa-radius-md);
+  box-shadow: var(--upa-shadow-lg);
+  animation: navDropIn 0.18s ease both;
+}
+
+@keyframes navDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.upa-dropdown__item {
+  padding: 0.65rem 0.9rem;
+  color: var(--upa-text);
+  border-radius: var(--upa-radius-sm);
+  font-weight: 500;
+  transition: var(--upa-transition);
+}
+
+.upa-dropdown__item:hover,
+.upa-dropdown__item:focus {
+  color: var(--upa-green);
+  background: var(--upa-green-soft);
+}
+
+/* Actions */
+.upa-navbar__actions {
+  gap: 1rem;
+}
+
+.upa-navbar__login {
+  white-space: nowrap;
+}
+
+/* Mobile Navigation Panel */
+.upa-mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 1085;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: linear-gradient(160deg, var(--upa-green-dark) 0%, var(--upa-green-darker) 100%);
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear 0.5s;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.upa-mobile-nav.is-open {
+  visibility: visible;
+  transform: translateX(0);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s;
+}
+
+.upa-navbar .navbar-toggler {
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+body.upa-mobilenav-open .navbar-toggler {
+  visibility: hidden;
+  transition: visibility 0s linear 0.5s;
+  pointer-events: none;
+}
+
+.upa-mobile-nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: 1.25rem 1.5rem;
+  padding-top: calc(1.25rem + env(safe-area-inset-top));
+}
+
+.upa-mobile-nav__logo {
+  width: auto;
+  height: 40px;
+}
+
+.upa-mobile-nav__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  transition: var(--upa-transition);
+}
+
+.upa-mobile-nav__close:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.upa-mobile-nav__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem calc(2.5rem + env(safe-area-inset-bottom));
+}
+
+.upa-mobile-nav__list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.upa-mobile-link {
+  display: block;
+  padding: 1rem 0.25rem;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.upa-mobile-link:hover,
+.upa-mobile-link.active {
+  color: var(--upa-yellow);
+}
+
+.upa-mobile-accordion__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0.25rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.upa-mobile-accordion__btn.is-open {
+  color: var(--upa-yellow);
+}
+
+.upa-mobile-accordion__chevron {
+  font-size: 0.85rem;
+  transition: transform 0.25s ease;
+}
+
+.upa-mobile-accordion__btn.is-open .upa-mobile-accordion__chevron {
+  transform: rotate(-180deg);
+}
+
+.upa-mobile-accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.upa-mobile-accordion__panel.is-open {
+  max-height: 480px;
+}
+
+.upa-mobile-sublink {
+  display: block;
+  margin: 0.15rem 0;
+  padding: 0.7rem 0.75rem 0.7rem 1rem;
+  color: rgba(255, 255, 255, 0.72);
+  border-radius: var(--upa-radius-sm);
+  font-size: 0.95rem;
+}
+
+.upa-mobile-sublink:hover {
+  color: var(--upa-yellow);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.upa-mobile-nav__login {
+  margin-top: 1.5rem;
+}
+
+/* Animations */
+@keyframes upa-mobile-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.upa-mobile-nav.is-open .upa-mobile-nav__header,
+.upa-mobile-nav.is-open .upa-mobile-nav__list > *,
+.upa-mobile-nav.is-open .upa-mobile-nav__login {
+  animation: upa-mobile-fade 0.4s ease-out backwards;
+  animation-delay: calc(0.18s + var(--i, 0) * 0.035s);
+}
+
+.upa-mobile-accordion__panel.is-open .upa-mobile-sublink {
+  animation: upa-mobile-fade 0.3s ease-out backwards;
+  animation-delay: calc(0.05s + var(--j, 0) * 0.03s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .upa-mobile-nav {
+    visibility: hidden;
+    opacity: 0;
+    transform: none;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+  }
+
+  .upa-mobile-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease, visibility 0s;
+  }
+
+  .upa-mobile-nav.is-open .upa-mobile-nav__header,
+  .upa-mobile-nav.is-open .upa-mobile-nav__list > *,
+  .upa-mobile-nav.is-open .upa-mobile-nav__login,
+  .upa-mobile-accordion__panel.is-open .upa-mobile-sublink {
+    animation: none;
+  }
+
+  .upa-navbar .navbar-toggler {
+    transition: none;
+  }
+}
+
+html.upa-mobilenav-lock {
+  overflow: hidden;
+}

@@ -1,0 +1,551 @@
+/* ============================================================
+   ppid.css - UPA Perkasa (PPID)
+   ============================================================ */
+
+/* Hero Panel */
+.upa-ppid-hero {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding: 2.75rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--upa-green) 0%, var(--upa-green-dark) 100%);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-md);
+}
+
+.upa-ppid-hero::after {
+  content: "";
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 240px;
+  height: 240px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.upa-ppid-hero__title {
+  position: relative;
+  max-width: 820px;
+  margin-bottom: 0.9rem;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+}
+
+.upa-ppid-hero__text {
+  position: relative;
+  max-width: 840px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.upa-ppid-hero__badge {
+  position: absolute;
+  top: 2rem;
+  right: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+  .upa-ppid-hero {
+    padding: 2rem 1.5rem;
+  }
+
+  .upa-ppid-hero__badge {
+    position: static;
+    display: inline-flex;
+    margin-bottom: 1rem;
+  }
+}
+
+/* PPID Tabs Navigation */
+.upa-ppid-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.35rem;
+  overflow-x: auto;
+  background: var(--upa-bg-alt);
+  border-radius: var(--upa-radius-lg);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.upa-ppid-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.upa-ppid-tabs__item {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 0.55rem;
+  padding: 0.7rem 1.25rem;
+  color: var(--upa-text-muted);
+  border-radius: var(--upa-radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: var(--upa-transition);
+}
+
+.upa-ppid-tabs__item i {
+  font-size: 0.95rem;
+}
+
+.upa-ppid-tabs__item:hover {
+  color: var(--upa-green);
+  background: #fff;
+}
+
+.upa-ppid-tabs__item.active {
+  color: #fff;
+  background: var(--upa-green);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+@media (max-width: 575.98px) {
+  .upa-ppid-tabs {
+    margin-right: -0.25rem;
+    margin-left: -0.25rem;
+    padding: 0.35rem 0.25rem;
+  }
+
+  .upa-ppid-tabs__item {
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Latar Belakang & Dasar Hukum */
+.upa-ppid-latar {
+  margin-bottom: 3rem;
+  padding: 2.25rem 2.5rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-ppid-latar__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.upa-ppid-latar__head i {
+  color: var(--upa-green);
+  font-size: 1.4rem;
+}
+
+.upa-ppid-latar__head h2 {
+  margin: 0;
+  color: var(--upa-green-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.upa-ppid-latar p {
+  margin-bottom: 1rem;
+  color: var(--upa-text);
+  line-height: 1.8;
+}
+
+.upa-ppid-latar p:last-of-type {
+  margin-bottom: 0;
+}
+
+.upa-ppid-latar__quote {
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.4rem;
+  color: var(--upa-green-dark);
+  background: var(--upa-bg-alt);
+  border-left: 4px solid var(--upa-yellow-dark);
+  border-radius: var(--upa-radius-sm);
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Section Header dengan Icon */
+.upa-ppid-section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.upa-ppid-section-head__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  color: #fff;
+  background: var(--upa-green);
+  border-radius: var(--upa-radius-md);
+  font-size: 1.4rem;
+}
+
+.upa-ppid-section-head__icon--yellow {
+  color: var(--upa-green-darker);
+  background: var(--upa-yellow);
+}
+
+.upa-ppid-section-head h2 {
+  margin-bottom: 0.25rem;
+  color: var(--upa-green-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.upa-ppid-section-head p {
+  margin-bottom: 0;
+  color: var(--upa-text-muted);
+  font-size: 0.92rem;
+}
+
+/* Data Table */
+.upa-ppid-table-wrap {
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-lg);
+  box-shadow: var(--upa-shadow-sm);
+}
+
+.upa-ppid-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.upa-ppid-table thead th {
+  padding: 1rem 1.5rem;
+  color: var(--upa-text-muted);
+  background: var(--upa-bg-alt);
+  border-bottom: 1px solid var(--upa-border);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.upa-ppid-table tbody td {
+  padding: 1.05rem 1.5rem;
+  border-bottom: 1px solid var(--upa-border);
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+.upa-ppid-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.upa-ppid-table tbody tr:hover {
+  background: var(--upa-bg-muted);
+}
+
+.upa-ppid-table th:nth-child(1),
+.upa-ppid-table td:nth-child(1) {
+  width: 8%;
+}
+
+.upa-ppid-table th:nth-child(2),
+.upa-ppid-table td:nth-child(2) {
+  width: 47%;
+}
+
+.upa-ppid-table th:nth-child(3),
+.upa-ppid-table td:nth-child(3) {
+  width: 20%;
+}
+
+.upa-ppid-table th:nth-child(4),
+.upa-ppid-table td:nth-child(4) {
+  width: 25%;
+}
+
+.upa-ppid-table__no {
+  color: var(--upa-text-muted);
+  font-weight: 600;
+}
+
+.upa-ppid-table__format .upa-badge {
+  color: var(--upa-text-muted);
+  background: var(--upa-bg-alt);
+}
+
+.upa-ppid-table th:nth-child(3),
+.upa-ppid-table th:nth-child(4),
+.upa-ppid-table__format,
+.upa-ppid-table__aksi {
+  text-align: center;
+}
+
+.upa-ppid-btn-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.2rem;
+  color: #fff;
+  background: var(--upa-green);
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--upa-transition);
+}
+
+.upa-ppid-btn-visit:hover {
+  color: #fff;
+  background: var(--upa-green-dark);
+  transform: translateY(-2px);
+}
+
+.upa-ppid-btn-visit i {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 767.98px) {
+  .upa-ppid-table thead th {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.02em;
+  }
+
+  .upa-ppid-table tbody td {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.78rem;
+  }
+
+  .upa-ppid-table td[data-label]::before {
+    content: none;
+  }
+
+  .upa-ppid-table th:nth-child(1),
+  .upa-ppid-table td:nth-child(1) {
+    width: 8%;
+  }
+
+  .upa-ppid-table th:nth-child(2),
+  .upa-ppid-table td:nth-child(2) {
+    width: 44%;
+  }
+
+  .upa-ppid-table th:nth-child(3),
+  .upa-ppid-table td:nth-child(3) {
+    width: 18%;
+  }
+
+  .upa-ppid-table th:nth-child(4),
+  .upa-ppid-table td:nth-child(4) {
+    width: 30%;
+  }
+
+  .upa-ppid-table td:nth-child(2) {
+    overflow-wrap: anywhere;
+  }
+
+  .upa-ppid-table th:nth-child(3),
+  .upa-ppid-table th:nth-child(4),
+  .upa-ppid-table td:nth-child(3),
+  .upa-ppid-table td:nth-child(4) {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+
+  .upa-ppid-table__format .upa-badge {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+
+  .upa-ppid-btn-visit {
+    gap: 0.3rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  .upa-ppid-btn-visit i {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .upa-ppid-btn-visit i {
+    display: none;
+  }
+}
+
+/* Info Cards Grid */
+.upa-ppid-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.upa-ppid-info-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.6rem 1.75rem;
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+  box-shadow: var(--upa-shadow-sm);
+  transition: var(--upa-transition);
+}
+
+.upa-ppid-info-card:hover {
+  box-shadow: var(--upa-shadow-md);
+  transform: translateY(-3px);
+}
+
+.upa-ppid-info-card__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 1rem;
+  color: #fff;
+  background: var(--upa-green);
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.upa-ppid-info-card__icon {
+  position: absolute;
+  top: 1.7rem;
+  right: 1.75rem;
+  color: var(--upa-green);
+  font-size: 1.2rem;
+  opacity: 0.65;
+}
+
+.upa-ppid-info-card__title {
+  margin-bottom: 0.4rem;
+  color: var(--upa-text);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.upa-ppid-info-card__desc {
+  margin-bottom: 0.9rem;
+  color: var(--upa-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.upa-ppid-info-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  color: var(--upa-green);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.upa-ppid-info-card__link span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.upa-ppid-info-card__link:hover {
+  color: var(--upa-green-dark);
+}
+
+.upa-ppid-info-card__link:hover span {
+  text-decoration-color: var(--upa-green-dark);
+}
+
+.upa-ppid-info-card--wide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+  gap: 1.5rem;
+  height: auto;
+}
+
+.upa-ppid-info-card--wide .upa-ppid-info-card__body {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.upa-ppid-info-card--wide .upa-ppid-info-card__num {
+  flex-shrink: 0;
+  margin-bottom: 0;
+  color: #fff;
+  background: var(--upa-green);
+}
+
+@media (max-width: 767.98px) {
+  .upa-ppid-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .upa-ppid-info-card--wide {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .upa-ppid-info-card--wide .btn {
+    width: 100%;
+  }
+
+  .upa-ppid-info-card:not(.upa-ppid-info-card--wide) .upa-ppid-info-card__num {
+    position: absolute;
+    top: 1.6rem;
+    left: 1.75rem;
+    margin-bottom: 0;
+  }
+
+  .upa-ppid-info-card:not(.upa-ppid-info-card--wide) .upa-ppid-info-card__title {
+    display: flex;
+    align-items: center;
+    min-height: 34px;
+    margin-bottom: 0.6rem;
+    padding-left: 46px;
+  }
+}
+
+/* Document Viewer */
+.upa-ppid-doc-viewer {
+  margin-bottom: 2.5rem;
+}
+
+.upa-ppid-doc-viewer .upa-report-preview__frame {
+  height: 82vh;
+}
+
+.upa-ppid-doc-viewer .upa-report-preview__header-actions {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .upa-ppid-doc-viewer .upa-report-preview__frame {
+    height: 65vh;
+  }
+}

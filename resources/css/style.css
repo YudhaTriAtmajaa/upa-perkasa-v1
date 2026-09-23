@@ -1,0 +1,343 @@
+/* ============================================================
+   style.css - UPA Perkasa Unmul
+   CSS Variables, Typography, Buttons, Cards, Utilities
+   ============================================================ */
+
+/* Design Tokens */
+:root {
+  /* Brand Palette */
+  --upa-green: #004d00;
+  --upa-green-light: #2e8b3d;
+  --upa-green-dark: #013301;
+  --upa-green-darker: #002200;
+  --upa-green-heading: #004200;
+  --upa-green-soft: #e8f0e6;
+  --upa-green-softer: #a3ba9f;
+  --upa-yellow: #fcd400;
+  --upa-yellow-dark: #8a6d00;
+  --upa-yellow-soft: #fff6cf;
+
+  /* Background Shades */
+  --upa-bg: #ffffff;
+  --upa-bg-alt: #f3f4f5;
+  --upa-bg-muted: #f8f9fa;
+
+  /* Text & Border */
+  --upa-text: #1c1f1c;
+  --upa-text-muted: #6c757d;
+  --upa-border: #e5e7ea;
+
+  /* Radius */
+  --upa-radius-sm: 10px;
+  --upa-radius-md: 16px;
+  --upa-radius-lg: 24px;
+  --upa-radius-pill: 999px;
+
+  /* Shadows */
+  --upa-shadow-sm: 0 2px 8px rgba(0, 30, 0, 0.06);
+  --upa-shadow-md: 0 8px 24px rgba(0, 30, 0, 0.1);
+  --upa-shadow-lg: 0 16px 40px rgba(0, 30, 0, 0.16);
+
+  /* Typography */
+  --upa-font-display: "Inter", "Poppins", sans-serif;
+  --upa-font-body: "Poppins", "Segoe UI", sans-serif;
+
+  /* Transition */
+  --upa-transition: all 0.22s ease-in-out;
+}
+
+/* Reset / Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+html.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+html.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  color: var(--upa-text);
+  background: var(--upa-bg-muted);
+  font-family: var(--upa-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+body.offcanvas-open,
+body.modal-open {
+  padding-right: 0 !important;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--upa-transition);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  color: var(--upa-green-heading);
+  font-family: var(--upa-font-display);
+  font-weight: 700;
+}
+
+.heading-bubble {
+  color: var(--upa-yellow);
+  font-family: var(--upa-font-display);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  paint-order: stroke fill;
+  text-shadow: 2px 2px 0 rgba(0, 20, 0, 0.12);
+  -webkit-text-stroke: 1.5px var(--upa-green-darker);
+}
+
+.heading-bubble--dark {
+  color: var(--upa-green-heading);
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+}
+
+.text-upa-green {
+  color: var(--upa-green) !important;
+}
+
+.text-upa-yellow {
+  color: var(--upa-yellow) !important;
+}
+
+.text-upa-yellow-outline {
+  color: var(--upa-yellow);
+  paint-order: stroke fill;
+  -webkit-text-stroke: 1px var(--upa-green-darker);
+}
+
+.bg-upa-green {
+  background-color: var(--upa-green) !important;
+}
+
+.bg-upa-alt {
+  background-color: var(--upa-bg-alt) !important;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  color: var(--upa-green-dark);
+  background: var(--upa-yellow-soft);
+  border: 1px solid var(--upa-yellow);
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Buttons */
+.btn-upa-primary {
+  padding: 0.55rem 1.5rem;
+  color: #fff;
+  background: var(--upa-green);
+  border: 2px solid var(--upa-green);
+  border-radius: var(--upa-radius-pill);
+  font-weight: 600;
+  transition: var(--upa-transition);
+}
+
+.btn-upa-primary:hover,
+.btn-upa-primary:focus {
+  color: #fff;
+  background: var(--upa-green-dark);
+  border-color: var(--upa-green-dark);
+  box-shadow: var(--upa-shadow-sm);
+  transform: translateY(-2px);
+}
+
+.btn-upa-outline {
+  padding: 0.55rem 1.5rem;
+  color: var(--upa-green);
+  background: transparent;
+  border: 2px solid var(--upa-green);
+  border-radius: var(--upa-radius-pill);
+  font-weight: 600;
+  transition: var(--upa-transition);
+}
+
+.btn-upa-outline:hover {
+  color: #fff;
+  background: var(--upa-green);
+  transform: translateY(-2px);
+}
+
+.btn-upa-light {
+  padding: 0.5rem 1.4rem;
+  color: var(--upa-green);
+  background: #fff;
+  border: 2px solid #fff;
+  border-radius: var(--upa-radius-pill);
+  font-weight: 600;
+  box-shadow: 0 10px 22px rgba(0, 10, 0, 0.18);
+  transition: var(--upa-transition);
+}
+
+.btn-upa-light:hover {
+  color: var(--upa-green-darker);
+  background: var(--upa-green-softer);
+  border-color: var(--upa-green);
+  transform: translateY(-2px);
+}
+
+/* Generic Card */
+.upa-card {
+  background: #fff;
+  border: 1px solid var(--upa-border);
+  border-radius: var(--upa-radius-md);
+  box-shadow: var(--upa-shadow-sm);
+  transition: var(--upa-transition);
+}
+
+.upa-card:hover {
+  box-shadow: var(--upa-shadow-md);
+  transform: translateY(-4px);
+}
+
+.upa-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  border-radius: var(--upa-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.upa-badge-open {
+  color: #1c8a3c;
+  background: #e6f6ea;
+}
+
+.upa-badge-yellow {
+  color: var(--upa-green-darker);
+  background: var(--upa-yellow);
+}
+
+.upa-badge-green {
+  color: #fff;
+  background: var(--upa-green);
+}
+
+/* Breadcrumb */
+.upa-breadcrumb-wrap {
+  border-bottom: 1px solid var(--upa-border);
+}
+
+.upa-breadcrumb {
+  color: var(--upa-text-muted);
+  font-size: 0.9rem;
+
+  --bs-breadcrumb-divider: '>';
+}
+
+.upa-breadcrumb a {
+  color: var(--upa-text-muted);
+}
+
+.upa-breadcrumb a:hover {
+  color: var(--upa-green);
+}
+
+.upa-breadcrumb .breadcrumb-item.active {
+  color: var(--upa-green);
+  font-weight: 600;
+}
+
+.upa-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--upa-text-muted);
+}
+
+/* Page Hero */
+.page-hero {
+  padding: 3rem 0 2.5rem;
+  background: var(--upa-bg-muted);
+  text-align: center;
+}
+
+.page-hero__title {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+}
+
+.page-hero__subtitle {
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--upa-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: justify;
+  text-align-last: center;
+}
+
+.page-hero__underline {
+  width: 90px;
+  height: 4px;
+  margin: 1.25rem auto 0;
+  background: var(--upa-green);
+  border-radius: 999px;
+}
+
+.page-hero--split .page-hero__title-top {
+  margin-bottom: 0.25rem;
+  color: var(--upa-green-heading);
+  font-family: var(--upa-font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+}
+
+.page-hero--split .page-hero__title-accent {
+  margin-bottom: 0;
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+}
+
+/* Hover Lift Utility */
+.upa-hover-lift {
+  transition: var(--upa-transition);
+}
+
+.upa-hover-lift:hover {
+  transform: translateY(-4px);
+}

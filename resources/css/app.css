@@ -1,0 +1,24 @@
+/*
+ * Entry point stylesheet utama aplikasi.
+ * Urutan import menjaga hierarki cascade CSS.
+ */
+
+/* Base styles, design tokens, dan komponen dasar */
+@import './style.css';
+
+/* Layout global */
+@import './navbar.css';
+@import './footer.css';
+
+/* Halaman spesifik */
+@import './agenda.css';
+@import './berita.css';
+@import './home.css';
+@import './lowongan.css';
+@import './pengumuman.css';
+@import './ppid.css';
+@import './profile.css';
+@import './report.css';
+
+/* Responsive styles */
+@import './responsive.css';
