@@ -1,4 +1,4 @@
-<div class="upa-agenda-item">
+<a href="{{ $url ?? '#' }}" class="upa-agenda-item">
     <div class="upa-agenda-item__date">
         <span class="upa-agenda-item__month">{{ $month }}</span>
         <span class="upa-agenda-item__day">{{ $day }}</span>
@@ -10,4 +10,4 @@
             <span><i class="bi bi-geo-alt me-1"></i>{{ $location }}</span>
         </div>
     </div>
-</div>
+</a>

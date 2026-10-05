@@ -95,14 +95,10 @@
         </div>
     </nav>
 
-    {{-- ── Mobile full-screen nav ────────────────────────────────────
-        Custom panel (not Bootstrap's offcanvas/accordion) — avoids the
-        scrollbar-compensation + collapse-init issues those components
-        had here, and matches the full-screen mobile nav pattern used
-        on unmul.ac.id. Opened/closed purely via navbar.js. ──────── --}}
+    {{-- Mobile nav (full-screen) --}}
     <div class="upa-mobile-nav" id="upaMobileMenu" aria-hidden="true">
         <div class="upa-mobile-nav__header">
-            <img src="{{ asset('img/logo/logo-full.png') }}" alt="Logo UPA Perkasa" class="upa-mobile-nav__logo">
+            <img src="{{ asset('img/logo/logo-icon.png') }}" alt="Logo UPA Perkasa" class="upa-mobile-nav__logo">
             <button type="button" class="upa-mobile-nav__close" id="upaMenuClose" aria-label="Tutup menu">
                 <i class="bi bi-x-lg"></i>
             </button>

@@ -7,6 +7,7 @@
         [
             'slug'       => 'workshop-persiapan-karir-campus-hiring-2024',
             'status'     => 'Pendaftaran Dibuka',
+            'date'       => '24 Oktober 2024',
             'category'   => 'Campus Hiring',
             'title'      => 'Workshop Persiapan Karir & Campus Hiring 2024',
             'excerpt'    => 'Agenda tahunan UPA Perkasa yang membekali calon wisudawan dan alumni dengan keterampilan praktis menghadapi dunia kerja.',
@@ -17,6 +18,7 @@
         [
             'slug'       => 'strategi-branding-media-sosial-2024',
             'status'     => 'Akan Datang',
+            'date'       => '28 Oktober 2024',
             'category'   => 'Workshop Digital Marketing',
             'title'      => 'Strategi Branding & Media Sosial 2024',
             'excerpt'    => 'Pelajari cara membangun brand yang kuat di era digital bersama praktisi industri berpengalaman. Sesi ini akan mencakup audit media sosial, pembuatan konten, dan iklan berbayar.',
@@ -28,6 +30,7 @@
         [
             'slug'       => 'persiapan-interview-kerja-simulasi-linkedin',
             'status'     => 'Akan Datang',
+            'date'       => '05 November 2024',
             'category'   => 'Seminar Karir',
             'title'      => 'Persiapan Interview Kerja & Simulasi LinkedIn',
             'excerpt'    => 'Bagaimana cara tampil percaya diri saat interview? Kami menghadirkan HR dari perusahaan multinasional untuk berbagi tips eksklusif dan review profil LinkedIn secara langsung.',
@@ -39,6 +42,7 @@
         [
             'slug'       => 'bootcamp-dasar-data-science-python',
             'status'     => 'Akan Datang',
+            'date'       => '12 November 2024',
             'category'   => 'Pelatihan Teknis',
             'title'      => 'Bootcamp Dasar-Dasar Data Science dengan Python',
             'excerpt'    => 'Program intensif 2 hari untuk mengenalkan mahasiswa pada dunia pengolahan data. Peserta akan belajar memvisualisasikan data dan melakukan prediksi sederhana.',
@@ -50,6 +54,7 @@
         [
             'slug'       => 'mulawarman-career-expo-road-to-success',
             'status'     => 'Akan Datang',
+            'date'       => '20 November 2024',
             'category'   => 'Job Fair',
             'title'      => 'Mulawarman Career Expo: Road to Success',
             'excerpt'    => 'Kesempatan bertemu langsung dengan puluhan perusahaan mitra Universitas Mulawarman. Tersedia lebih dari 500 lowongan kerja untuk fresh graduate dan profesional.',
@@ -60,6 +65,7 @@
         [
             'slug'       => 'mulawarman-career-expo-road-to-success-2',
             'status'     => 'Akan Datang',
+            'date'       => '27 November 2024',
             'category'   => 'Job Fair',
             'title'      => 'Mulawarman Career Expo: Road to Success',
             'excerpt'    => 'Kesempatan bertemu langsung dengan puluhan perusahaan mitra Universitas Mulawarman. Tersedia lebih dari 500 lowongan kerja untuk fresh graduate dan profesional.',
@@ -117,6 +123,7 @@
                     @include('components.agenda-card', [
                         'status'     => $item['status'],
                         'category'   => $item['category'],
+                        'date'       => $item['date'],
                         'title'      => $item['title'],
                         'excerpt'    => $item['excerpt'],
                         'location'   => $item['location'],
@@ -160,11 +167,6 @@
 
 @push('scripts')
 <script>
-/* ==========================================================================
-   Agenda pagination — front-end-only placeholder, same behaviour as the
-   Berita/Lowongan list pages (see resources/views/publikasi/berita.blade.php).
-   Wire the real page navigation once backend pagination is ready.
-   ========================================================================== */
 document.addEventListener('DOMContentLoaded', function () {
     var strip = document.querySelector('.upa-pagination__numbers');
     var prevBtn = document.querySelector('.upa-pagination__prev');

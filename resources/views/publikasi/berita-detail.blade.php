@@ -5,29 +5,19 @@
     // Dummy data — replace with the resolved $berita model from the route model binding later.
     $berita = $berita ?? [
         'image'   => asset('img/photos/leader-02.jpg'),
-        // Foto galeri berita — isi dengan beberapa foto (2 s/d 8 foto disarankan).
-        // Kalau field 'images' tidak diisi, carousel otomatis jatuh ke 'image' tunggal di atas.
-        // NOTE: 4 foto placeholder di bawah ini cuma buat TES TAMPILAN carousel biar
-        // kelihatan jelas geser-nya (beda warna/nomor). Ganti dengan foto asli berita
-        // sebelum publish — hapus juga file public/img/photos/demo-berita-*.jpg.
-        'images'  => [
-            asset('img/photos/demo-berita-1.jpg'),
-            asset('img/photos/demo-berita-2.jpg'),
-            asset('img/photos/demo-berita-3.jpg'),
-            asset('img/photos/demo-berita-4.jpg'),
-        ],
         'title'   => 'Peningkatan Kualitas Lulusan Melalui Program Sertifikasi Kompetensi Internasional 2024',
         'author'  => 'HumasUnmul',
         'date'    => '24 Oktober 2024',
         'views'   => '1.245',
         'tags'    => ['#KarirUnmul', '#Sertifikasi', '#IKU1'],
-        'body'    => [
-            'Universitas Mulawarman melalui Unit Penunjang Akademik (UPA) Perkasa kembali menegaskan komitmennya dalam mencetak lulusan yang siap bersaing di kancah global. Salah satu langkah strategis yang diambil adalah dengan meluncurkan program subsidi sertifikasi kompetensi internasional bagi mahasiswa tingkat akhir dan alumni.',
-            'Program ini mencakup berbagai bidang mulai dari teknologi informasi, manajemen rantai pasok, hingga keahlian teknik sipil. Direktur UPA Perkasa Unmul menyatakan bahwa sertifikasi ini bukan sekadar bukti formalitas, melainkan jembatan konkret antara teori akademis dengan kebutuhan industri modern yang dinamis.',
-        ],
-        'quote' => '"Kami ingin memastikan setiap lulusan Unmul tidak hanya membawa ijazah, tetapi juga paspor kompetensi yang diakui secara global."',
-        'body_after' => [
-            'Pendaftaran program gelombang pertama telah dibuka hingga akhir bulan ini. Mahasiswa yang berminat diharapkan dapat segera memverifikasi kelengkapan dokumen melalui portal internal masing-masing. Informasi lebih lanjut mengenai jenis sertifikasi yang tersedia dapat diakses melalui menu Program Kerja di website resmi ini.',
+        // Isi berita berupa urutan blok: paragraf -> gambar -> paragraf -> gambar, dst.
+        // type: 'text' (paragraf) | 'image' (src + caption opsional) | 'quote' (kutipan)
+        'content' => [
+            ['type' => 'text', 'value' => 'Universitas Mulawarman melalui Unit Penunjang Akademik (UPA) Perkasa kembali menegaskan komitmennya dalam mencetak lulusan yang siap bersaing di kancah global. Salah satu langkah strategis yang diambil adalah dengan meluncurkan program subsidi sertifikasi kompetensi internasional bagi mahasiswa tingkat akhir dan alumni.'],
+            ['type' => 'image', 'src' => asset('img/photos/demo-berita-1.jpg'), 'caption' => 'Peluncuran program sertifikasi kompetensi internasional di Universitas Mulawarman.'],
+            ['type' => 'text', 'value' => 'Program ini mencakup berbagai bidang mulai dari teknologi informasi, manajemen rantai pasok, hingga keahlian teknik sipil. Direktur UPA Perkasa Unmul menyatakan bahwa sertifikasi ini bukan sekadar bukti formalitas, melainkan jembatan konkret antara teori akademis dengan kebutuhan industri modern yang dinamis.'],
+            ['type' => 'text', 'value' => 'Pendaftaran program gelombang pertama telah dibuka hingga akhir bulan ini. Mahasiswa yang berminat diharapkan dapat segera memverifikasi kelengkapan dokumen melalui portal internal masing-masing. Informasi lebih lanjut mengenai jenis sertifikasi yang tersedia dapat diakses melalui menu Program Kerja di website resmi ini.'],
+            ['type' => 'quote', 'value' => '"Kami ingin memastikan setiap lulusan Unmul tidak hanya membawa ijazah, tetapi juga paspor kompetensi yang diakui secara global."'],
         ],
     ];
 @endphp
@@ -53,47 +43,29 @@
             </div>
         </div>
 
-        @php $galleryImages = $berita['images'] ?? [$berita['image']]; @endphp
-
-        @if (count($galleryImages) > 1)
-            {{-- Galeri foto berita — carousel kartu 3D (efek Swiper "cards") --}}
-            <div class="upa-berita-detail__gallery-wrap" data-aos="fade-up">
-                <div class="swiper upa-berita-detail__gallery">
-                    <div class="swiper-wrapper">
-                        @foreach ($galleryImages as $img)
-                            <div class="swiper-slide">
-                                <img src="{{ $img }}" alt="{{ $berita['title'] }} - foto {{ $loop->iteration }}" class="upa-berita-detail__cover">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="upa-berita-detail__gallery-nav">
-                    <button type="button" class="upa-berita-detail__gallery-btn upa-berita-detail__gallery-btn--prev" aria-label="Foto sebelumnya">
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-                    <div class="swiper-pagination upa-berita-detail__gallery-pagination"></div>
-                    <button type="button" class="upa-berita-detail__gallery-btn upa-berita-detail__gallery-btn--next" aria-label="Foto berikutnya">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        @else
-            <img src="{{ $berita['image'] }}" alt="{{ $berita['title'] }}" class="upa-berita-detail__cover" data-aos="fade-up">
-        @endif
+        {{-- Gambar utama (satu gambar saja) --}}
+        <img src="{{ $berita['image'] }}" alt="{{ $berita['title'] }}" class="upa-berita-detail__cover" data-aos="fade-up">
 
         <div data-aos="fade-up" data-aos-delay="80">
             <div class="upa-berita-detail__body">
-                @foreach ($berita['body'] as $paragraph)
-                    <p>{{ $paragraph }}</p>
-                @endforeach
+                @foreach ($berita['content'] as $block)
+                    @switch($block['type'])
+                        @case('image')
+                            <figure class="upa-berita-detail__figure">
+                                <img src="{{ $block['src'] }}" alt="{{ $block['caption'] ?? $berita['title'] }}" loading="lazy">
+                                @if (!empty($block['caption']))
+                                    <figcaption>{{ $block['caption'] }}</figcaption>
+                                @endif
+                            </figure>
+                            @break
 
-                @isset($berita['quote'])
-                    <blockquote class="upa-berita-detail__quote">{{ $berita['quote'] }}</blockquote>
-                @endisset
+                        @case('quote')
+                            <blockquote class="upa-berita-detail__quote">{{ $block['value'] }}</blockquote>
+                            @break
 
-                @foreach ($berita['body_after'] ?? [] as $paragraph)
-                    <p>{{ $paragraph }}</p>
+                        @default
+                            <p>{{ $block['value'] }}</p>
+                    @endswitch
                 @endforeach
             </div>
 

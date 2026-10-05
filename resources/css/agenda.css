@@ -85,6 +85,14 @@
   margin-right: 0.35rem;
 }
 
+.upa-agenda-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--upa-text-muted);
+}
+
 .upa-agenda-card__link {
   position: absolute;
   top: 1.5rem;

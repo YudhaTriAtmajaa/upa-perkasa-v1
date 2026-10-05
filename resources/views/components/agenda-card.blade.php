@@ -4,6 +4,7 @@
         @include('components.agenda-card', [
             'status'     => 'Akan Datang', // Akan Datang | Pendaftaran Dibuka | Selesai
             'category'   => 'Workshop Digital Marketing',
+            'date'       => '24 Oktober 2024',
             'title'      => 'Judul agenda...',
             'excerpt'    => 'Ringkasan singkat...',
             'location'   => 'Gedung Aula Lantai 3, Unmul',
@@ -29,6 +30,9 @@
 <article class="upa-agenda-card upa-card">
     <div class="upa-agenda-card__badges">
         <span class="upa-badge {{ $statusClass }}"><i class="bi {{ $statusIcon }}"></i>{{ $status ?? 'Akan Datang' }}</span>
+        @isset($date)
+            <span class="upa-agenda-card__date"><i class="bi bi-calendar3"></i>{{ $date }}</span>
+        @endisset
     </div>
 
     <a href="{{ $url ?? '#' }}" class="upa-agenda-card__link">
@@ -36,7 +40,7 @@
     </a>
 
     <h3 class="upa-agenda-card__title">
-        <a href="{{ $url ?? '#' }}">{{ $title }}</a>
+        <a href="{{ $url ?? '#' }}" class="stretched-link">{{ $title }}</a>
     </h3>
 
     @isset($excerpt)

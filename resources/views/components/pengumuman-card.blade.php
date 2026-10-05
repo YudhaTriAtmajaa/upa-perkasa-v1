@@ -20,7 +20,7 @@
     </a>
 
     <h3 class="upa-pengumuman-card__title">
-        <a href="{{ $url ?? '#' }}">{{ $title }}</a>
+        <a href="{{ $url ?? '#' }}" class="stretched-link">{{ $title }}</a>
     </h3>
 
     @isset($division)

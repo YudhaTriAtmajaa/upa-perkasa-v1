@@ -10,7 +10,7 @@
             'url'     => route('publikasi.berita-detail', $slug),
         ])
 --}}
-<article class="upa-berita-card upa-card h-100">
+<article class="upa-berita-card upa-card h-100 position-relative">
     <a href="{{ $url ?? '#' }}" class="upa-berita-card__media">
         <img src="{{ $image }}" alt="{{ $title }}" loading="lazy">
     </a>
@@ -22,7 +22,7 @@
         <p class="upa-berita-card__excerpt">{{ $excerpt }}</p>
         <div class="upa-berita-card__footer mt-auto">
             <span class="upa-berita-card__views"><i class="bi bi-eye"></i> {{ $views }}</span>
-            <a href="{{ $url ?? '#' }}" class="upa-berita-card__link">
+            <a href="{{ $url ?? '#' }}" class="upa-berita-card__link stretched-link">
                 Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
             </a>
         </div>

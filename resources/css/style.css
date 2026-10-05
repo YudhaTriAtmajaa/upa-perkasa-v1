@@ -124,7 +124,7 @@ h6,
   letter-spacing: 0.4px;
   paint-order: stroke fill;
   text-shadow: 2px 2px 0 rgba(0, 20, 0, 0.12);
-  -webkit-text-stroke: 1.5px var(--upa-green-darker);
+  -webkit-text-stroke: 1.5px var(--upa-green-heading);
 }
 
 .heading-bubble--dark {

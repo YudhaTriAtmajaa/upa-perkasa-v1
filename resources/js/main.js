@@ -67,7 +67,7 @@ if (typeof gsap !== "undefined") {
       duration: 0.9,
       clearProps: "transform"
     })
-    .from(".upa-hero-swiper", { opacity: 0, duration: 0.9 }, "-=0.5")
+    .from(".upa-banner-swiper", { opacity: 0, duration: 0.9 }, "-=0.5")
     .from(".page-hero", { opacity: 0, y: 30, duration: 0.9 }, "-=0.9");
 
   const announceTitle = document.querySelector(".upa-announce-section__title");
@@ -123,20 +123,43 @@ if (typeof gsap !== "undefined") {
 
 /* Swiper Instances */
 if (typeof Swiper !== "undefined") {
-  const heroSwiper = document.querySelector(".upa-hero-swiper");
+  /* Mode loop + centeredSlides butuh minimal 5-6 slide. Jika slide asli lebih sedikit,
+     slide digandakan di DOM supaya sisi kiri/kanan selalu terisi saat digeser. */
+  const upaEnsureSlides = (selector, min) => {
+    const wrapper = document.querySelector(selector + " .swiper-wrapper");
+    if (!wrapper) return;
+    const originals = Array.from(wrapper.children);
+    let guard = 0;
+    while (originals.length && wrapper.children.length < min && guard++ < 6) {
+      originals.forEach((el) => wrapper.appendChild(el.cloneNode(true)));
+    }
+  };
+
+  const heroSwiper = document.querySelector(".upa-banner-swiper");
   if (heroSwiper) {
-    new Swiper(".upa-hero-swiper", {
+    upaEnsureSlides(".upa-banner-swiper", 6);
+    new Swiper(".upa-banner-swiper", {
       loop: true,
-      effect: "fade",
-      fadeEffect: { crossFade: true },
-      speed: 1000,
+      centeredSlides: true,
+      slidesPerView: 1.1,
+      spaceBetween: 12,
+      speed: 700,
+      grabCursor: true,
+      slideToClickedSlide: true,
       autoplay: {
-        delay: 5000,
+        delay: 2000,
         disableOnInteraction: false,
         pauseOnMouseEnter: true
       },
-      pagination: { el: ".upa-hero-swiper__pagination", clickable: true },
+      navigation: {
+        prevEl: ".upa-banner__nav--prev",
+        nextEl: ".upa-banner__nav--next"
+      },
       keyboard: { enabled: true },
+      breakpoints: {
+        576: { slidesPerView: 1.2, spaceBetween: 20 },
+        992: { slidesPerView: 1.25, spaceBetween: 30 }
+      },
       a11y: {
         prevSlideMessage: "Slide sebelumnya",
         nextSlideMessage: "Slide berikutnya"
@@ -161,8 +184,10 @@ if (typeof Swiper !== "undefined") {
 
   const announceSwiper = document.querySelector(".upa-announce-swiper");
   if (announceSwiper) {
+    upaEnsureSlides(".upa-announce-swiper", 6);
     new Swiper(".upa-announce-swiper", {
       loop: true,
+      centeredSlides: true,
       slidesPerView: 1.1,
       spaceBetween: 16,
       grabCursor: true,
@@ -175,8 +200,8 @@ if (typeof Swiper !== "undefined") {
       breakpoints: {
         576: { slidesPerView: 1.6 },
         768: { slidesPerView: 2.2 },
-        992: { slidesPerView: 2.4, spaceBetween: 20 },
-        1200: { slidesPerView: 3, spaceBetween: 24 }
+        992: { slidesPerView: 2.6, spaceBetween: 20 },
+        1200: { slidesPerView: 3, spaceBetween: 28 }
       }
     });
   }
@@ -235,3 +260,162 @@ document.querySelectorAll("[data-upa-scrolltop]").forEach((btn) => {
     }
   });
 });
+
+/* ============================================================
+   Visitor Counter (Jumlah Pengunjung, papan skor flip)
+   Alur: bangun kotak angka -> POST ke data-endpoint (backend menambah
+   hitungan sekali per sesi) -> saat terlihat di layar, hitung 0 -> N.
+   Kalau endpoint kosong/gagal dipakai angka contoh data-fallback (1000).
+   ============================================================ */
+(function () {
+  const root = document.querySelector("[data-visitor-counter]");
+  if (!root) return;
+
+  const MIN_DIGITS = parseInt(root.dataset.digits, 10) || 5; // jumlah kotak minimal
+  const FALLBACK = parseInt(root.dataset.fallback, 10) || 62948;
+  const COUNT_DURATION = 1000; // ms, lamanya hitung 0 -> N
+  const STEP = 50;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  root.style.setProperty("--flip-step", STEP + "ms");
+
+  /* ---------- Satu kotak angka ---------- */
+  function createDigit() {
+    const el = document.createElement("div");
+    el.className = "upa-flip__digit";
+    el.innerHTML =
+      '<div class="upa-flip__half upa-flip__top"><span>0</span></div>' +
+      '<div class="upa-flip__half upa-flip__bottom"><span>0</span></div>' +
+      '<div class="upa-flip__leaf upa-flip__leaf--top"><span>0</span></div>' +
+      '<div class="upa-flip__leaf upa-flip__leaf--bottom"><span>0</span></div>';
+
+    const top = el.querySelector(".upa-flip__top span");
+    const bottom = el.querySelector(".upa-flip__bottom span");
+    const leafTop = el.querySelector(".upa-flip__leaf--top span");
+    const leafBottom = el.querySelector(".upa-flip__leaf--bottom span");
+    const leafBottomEl = el.querySelector(".upa-flip__leaf--bottom");
+
+    const state = { current: 0, target: 0, busy: false };
+
+    function setAll(v) {
+      top.textContent = bottom.textContent = leafTop.textContent = leafBottom.textContent = v;
+    }
+
+    // Flip satu langkah: current -> current + 1 (0-9 berputar)
+    function step() {
+      if (state.current === state.target) {
+        state.busy = false;
+        return;
+      }
+      state.busy = true;
+      const from = state.current;
+      const to = (from + 1) % 10;
+
+      top.textContent = to; // setengah atas statis = angka baru
+      leafTop.textContent = from; // daun atas = angka lama (jatuh ke bawah)
+      leafBottom.textContent = to; // daun bawah = angka baru (naik menutup)
+      bottom.textContent = from; // setengah bawah statis = angka lama
+
+      el.classList.remove("is-flipping");
+      void el.offsetWidth; // restart animasi
+      el.classList.add("is-flipping");
+
+      const done = () => {
+        leafBottomEl.removeEventListener("animationend", done);
+        state.current = to;
+        setAll(to);
+        el.classList.remove("is-flipping");
+        step();
+      };
+      leafBottomEl.addEventListener("animationend", done);
+    }
+
+    return {
+      el,
+      set(v) {
+        state.target = v;
+        if (!state.busy) step();
+      },
+      jump(v) {
+        state.current = state.target = v;
+        setAll(v);
+      },
+    };
+  }
+
+  const digits = [];
+
+  // Tambah kotak di sisi kiri kalau angkanya lebih panjang dari jumlah kotak
+  function ensureDigits(n) {
+    while (digits.length < n) {
+      const d = createDigit();
+      digits.unshift(d);
+      root.insertBefore(d.el, root.firstChild);
+    }
+  }
+
+  ensureDigits(MIN_DIGITS);
+
+  function render(value, instant) {
+    const str = String(Math.max(0, Math.floor(value))).padStart(digits.length, "0");
+    for (let i = 0; i < digits.length; i++) {
+      const n = parseInt(str[i], 10);
+      instant ? digits[i].jump(n) : digits[i].set(n);
+    }
+    root.setAttribute("aria-label", "Jumlah pengunjung: " + Number(value).toLocaleString("id-ID"));
+  }
+
+  function animateTo(total) {
+    ensureDigits(String(Math.floor(total)).length);
+    if (reduceMotion || total <= 0) {
+      render(total, true);
+      return;
+    }
+    const start = performance.now();
+    const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
+
+    function frame(now) {
+      const t = Math.min((now - start) / COUNT_DURATION, 1);
+      render(total * ease(t), false);
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- Ambil / tambah hitungan dari backend ---------- */
+  function fetchCount() {
+    const endpoint = root.dataset.endpoint;
+    if (!endpoint) return Promise.resolve(FALLBACK);
+
+    return fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "X-CSRF-TOKEN": root.dataset.csrf || "",
+        Accept: "application/json",
+      },
+      credentials: "same-origin",
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+      .then((data) => (Number.isFinite(Number(data.count)) ? Number(data.count) : FALLBACK))
+      .catch(() => FALLBACK);
+  }
+
+  const countPromise = fetchCount();
+
+  /* ---------- Mulai animasi saat terlihat di layar ---------- */
+  const visible = new Promise((resolve) => {
+    if (!("IntersectionObserver" in window)) return resolve();
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          resolve();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(root);
+  });
+
+  Promise.all([countPromise, visible]).then(([count]) => animateTo(count));
+})();

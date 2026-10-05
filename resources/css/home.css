@@ -2,81 +2,70 @@
    home.css - UPA Perkasa (Beranda / Homepage)
    ============================================================ */
 
-/* Hero Swiper Banner */
-.upa-hero {
+/* Hero Banner Carousel */
+.upa-banner {
   position: relative;
-  margin-top: calc(-1 * var(--upa-navbar-h));
+  padding: 1.5rem 0 0.5rem;
+  background: var(--upa-bg-alt);
 }
 
-.upa-hero-swiper {
-  height: calc(78vh + var(--upa-navbar-h));
-  max-height: calc(640px + var(--upa-navbar-h));
-  min-height: calc(380px + var(--upa-navbar-h));
+.upa-banner-swiper {
+  padding: 1rem 0 2.25rem;
   overflow: hidden;
 }
 
-.upa-hero-swiper .swiper-slide {
-  position: relative;
-  overflow: hidden;
+.upa-banner-swiper .swiper-slide {
+  height: auto;
 }
 
-.upa-hero__img-wrap {
+.upa-banner__card {
+  position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 5 / 2;
   overflow: hidden;
+  background: #dfe3e6;
+  border-radius: var(--upa-radius-lg);
+  box-shadow: 0 10px 28px rgba(0, 20, 0, 0.18);
 }
 
-.upa-hero__img {
+.upa-banner__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform-origin: center;
 }
 
-/* Ken Burns efekt zoom slide aktif */
-.upa-hero-swiper .swiper-slide-active .upa-hero__img {
-  animation: kenBurns 7s ease-out forwards;
-}
-
-@keyframes kenBurns {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.09);
-  }
-}
-
-.upa-hero__overlay {
+.upa-banner__nav {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 20, 0, 0.04) 0%,
-    rgba(0, 20, 0, 0.12) 55%,
-    rgba(0, 20, 0, 0.72) 100%
-  );
-  pointer-events: none;
+  top: calc(50% - 0.625rem);
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.85);
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 20, 0, 0.2);
+  color: var(--upa-green);
+  font-size: 1rem;
+  transition: var(--upa-transition);
 }
 
-.upa-hero-swiper__pagination {
-  bottom: 1.5rem !important;
-  z-index: 2;
+.upa-banner__nav:hover {
+  background: var(--upa-green);
+  color: #fff;
 }
 
-.upa-hero-swiper__pagination .swiper-pagination-bullet {
-  width: 34px;
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  opacity: 1;
-  transition: background 0.3s;
-}
+.upa-banner__nav--prev { left: 0.75rem; }
+.upa-banner__nav--next { right: 0.75rem; }
 
-.upa-hero-swiper__pagination .swiper-pagination-bullet-active {
-  background: var(--upa-yellow);
+@media (max-width: 575.98px) {
+  .upa-banner__nav { display: none; }
+  .upa-banner__card { border-radius: var(--upa-radius-md); }
 }
 
 /* Pengumuman Section */
@@ -87,7 +76,7 @@
   padding-bottom: 4.5rem;
   background: linear-gradient(360deg, var(--upa-green-light) 0%, var(--upa-green-dark) 100%);
   box-shadow: 0 20px 40px -12px rgba(0, 20, 0, 0.35);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .upa-announce-section__title {
@@ -100,18 +89,16 @@
   font-size: 1.05rem;
 }
 
+/* Agenda: swiper full-width (di luar .container) */
 .upa-announce-swiper {
-  padding-bottom: 2.5rem;
+  position: relative;
+  width: 100%;
+  padding: 1.75rem 0 3.5rem; /* ruang untuk shadow card atas & bawah */
+  overflow: hidden;
 }
 
-@media (max-width: 991.98px) {
-  .upa-announce-swiper {
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    overflow: visible;
-  }
+.upa-announce-swiper__pagination {
+  bottom: 1rem !important;
 }
 
 .upa-announce-swiper .swiper-slide {
@@ -190,6 +177,13 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem 2rem;
     align-items: stretch;
+  }
+}
+
+@media (min-width: 992px) {
+  .upa-announce-swiper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
@@ -279,6 +273,22 @@
   background: var(--upa-green);
 }
 
+.upa-vacancy-card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.upa-vacancy-card__info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.upa-vacancy-card__top .upa-badge {
+  flex-shrink: 0;
+}
+
 .upa-vacancy-card__logo {
   display: flex;
   align-items: center;
@@ -307,7 +317,7 @@
 }
 
 .upa-vacancy-card__company {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
   color: var(--upa-text-muted);
   font-size: 0.9rem;
 }
@@ -525,10 +535,9 @@
 @media (max-width: 991.98px) {
   .upa-announce-section,
   .upa-section {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
-.upa-announce-swiper,
 .upa-lowongan-swiper,
 .upa-berita-swiper,
 .upa-agenda-swiper {
@@ -537,5 +546,224 @@
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   overflow: visible;
+  }
+}
+
+a.upa-agenda-item {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ============================================================
+    Visitor Counter (Jumlah Pengunjung, papan skor flip)
+   ============================================================ */
+/* Gradasi menyambung: abu terang (section banner) -> kuning -> hijau tua
+   (warna awal section Agenda Kegiatan), jadi tidak ada garis pemisah. */
+.upa-visitor {
+  position: relative;
+  padding: 3.5rem 0 7.5rem;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(520px 300px at 14% 20%, rgba(255, 255, 255, 0.6) 0, transparent 100%),
+    linear-gradient(
+      180deg,
+      var(--upa-bg-alt) 0%,
+      #fff3b0 24%,
+      var(--upa-yellow) 52%,
+      #c3c514 74%,
+      var(--upa-green-dark) 100%
+    );
+}
+
+/* Lingkaran dekoratif */
+.upa-visitor::before,
+.upa-visitor::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.upa-visitor::before {
+  top: 22%;
+  right: -70px;
+  width: 260px;
+  height: 260px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.upa-visitor::after {
+  top: 30%;
+  left: -90px;
+  width: 260px;
+  height: 260px;
+  border: 24px solid rgba(255, 255, 255, 0.3);
+}
+
+.upa-visitor__title {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  color: var(--upa-green-heading);
+}
+
+.upa-visitor__subtitle {
+  margin-bottom: 2rem;
+  color: rgba(0, 34, 0, 0.75);
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+/* --- Baris kotak angka --- */
+.upa-flip {
+  --flip-h: clamp(64px, 11vw, 112px);
+  --flip-w: calc(var(--flip-h) * 0.72);
+  --flip-step: 110ms; /* durasi 1x flip, diatur dari JS */
+
+  display: inline-flex;
+  justify-content: center;
+  gap: clamp(5px, 1vw, 10px);
+}
+
+/* --- Satu kotak angka --- */
+.upa-flip__digit {
+  position: relative;
+  width: var(--flip-w);
+  height: var(--flip-h);
+  font-family: var(--upa-font-display);
+  font-size: calc(var(--flip-h) * 0.72);
+  font-weight: 700;
+  color: #1c1f1c;
+  perspective: 420px;
+  border-radius: 8px;
+  box-shadow: 0 10px 22px rgba(0, 34, 0, 0.3);
+}
+
+.upa-flip__half,
+.upa-flip__leaf {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background: linear-gradient(#ffffff, #ececec);
+}
+
+.upa-flip__half span,
+.upa-flip__leaf span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: var(--flip-h);
+  line-height: var(--flip-h);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Setengah atas */
+.upa-flip__top,
+.upa-flip__leaf--top {
+  top: 0;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.upa-flip__top span,
+.upa-flip__leaf--top span { top: 0; }
+
+/* Setengah bawah */
+.upa-flip__bottom,
+.upa-flip__leaf--bottom {
+  bottom: 0;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(#e4e4e4, #f8f8f8);
+}
+
+.upa-flip__bottom span,
+.upa-flip__leaf--bottom span { top: calc(var(--flip-h) / -2); }
+
+/* Daun yang berputar */
+.upa-flip__leaf {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 2;
+}
+
+.upa-flip__leaf--top {
+  transform-origin: 50% 100%;
+  transform: rotateX(0deg);
+}
+
+.upa-flip__leaf--bottom {
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+}
+
+.upa-flip__digit.is-flipping .upa-flip__leaf--top {
+  animation: upa-flip-top calc(var(--flip-step) / 2) ease-in forwards;
+}
+
+.upa-flip__digit.is-flipping .upa-flip__leaf--bottom {
+  animation: upa-flip-bottom calc(var(--flip-step) / 2) ease-out calc(var(--flip-step) / 2) forwards;
+}
+
+@keyframes upa-flip-top {
+  from { transform: rotateX(0deg); }
+  to   { transform: rotateX(-90deg); }
+}
+
+@keyframes upa-flip-bottom {
+  from { transform: rotateX(90deg); }
+  to   { transform: rotateX(0deg); }
+}
+
+/* Engsel di tengah + dua pin kecil di sisi kiri-kanan */
+.upa-flip__digit::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  height: 2px;
+  margin-top: -1px;
+  background: rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+
+.upa-flip__digit::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: -2px;
+  right: -2px;
+  z-index: 5;
+  height: 10px;
+  background:
+    radial-gradient(circle at 2px 50%, #9aa09a 0 2px, transparent 2.5px),
+    radial-gradient(circle at calc(100% - 2px) 50%, #9aa09a 0 2px, transparent 2.5px);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .upa-flip__digit.is-flipping .upa-flip__leaf--top,
+  .upa-flip__digit.is-flipping .upa-flip__leaf--bottom { animation-duration: 1ms; animation-delay: 0s; }
+}
+
+/* Visitor Counter: rapatkan jarak ke banner di layar HP */
+@media (max-width: 575.98px) {
+  .upa-banner-swiper {
+    padding-bottom: 1rem;
+  }
+
+  .upa-visitor {
+    padding-top: 1.25rem;
+    padding-bottom: 5rem;
+  }
+
+  .upa-visitor__subtitle {
+    margin-bottom: 1.5rem;
   }
 }
